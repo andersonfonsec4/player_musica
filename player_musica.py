@@ -131,25 +131,19 @@ def selecionar_musica(event):
 # --- Interface ---
 
 root = tk.Tk()
-root.title("Player estilo VLC com Lista e Controle")
-root.geometry("600x400")
+root.title("MusiQ 🎵")
+root.geometry("600x450")
 root.configure(bg="#1e1e1e")
 
-style = ttk.Style()
-style.theme_use("clam")
-style.configure("Estilo.TButton",
-                font=("Segoe UI", 10),
-                padding=6)
-
-style.map("Estilo.TButton",
-          foreground=[('!disabled', 'white')],
-          background=[('!disabled', '#333333'), ('active', '#ff8000')])
+# Cabeçalho com nome estilizado
+label_titulo = tk.Label(root, text="🎶 MusiQ Player", font=("Segoe UI", 20, "bold"), fg="#ff8000", bg="#1e1e1e")
+label_titulo.pack(pady=(10, 5))
 
 label_musica = tk.Label(root, text="Nenhuma música tocando", bg="#1e1e1e", fg="white", font=("Segoe UI", 12))
-label_musica.pack(pady=10)
+label_musica.pack(pady=(0, 10))
 
 frame_main = tk.Frame(root, bg="#1e1e1e")
-frame_main.pack(fill="both", expand=True, padx=10, pady=10)
+frame_main.pack(fill="both", expand=True, padx=10, pady=(0,10))
 
 lista_musicas = tk.Listbox(frame_main, bg="#2b2b2b", fg="white", selectbackground="#ff8000", height=15)
 lista_musicas.pack(side="left", fill="both", expand=True)
@@ -198,6 +192,16 @@ slider_volume = ttk.Scale(frame_volume, from_=0, to=100, orient='horizontal', co
 slider_volume.set(70)
 pygame.mixer.music.set_volume(0.7)
 slider_volume.pack(side='left')
+
+style = ttk.Style()
+style.theme_use("clam")
+style.configure("Estilo.TButton",
+                font=("Segoe UI", 10),
+                padding=6)
+
+style.map("Estilo.TButton",
+          foreground=[('!disabled', 'white')],
+          background=[('!disabled', '#333333'), ('active', '#ff8000')])
 
 atualizar_tempo()
 quando_musica_terminar()
